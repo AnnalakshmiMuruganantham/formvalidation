@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!--FONT LINK-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <!--ICON LINK-->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
+   <!--AOS LINK-->
+   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <title>Form</title>
+  </head>
+  <body>
+        <div class="card" style="width: 30%;">
+            <div class="card-header text-center">
+              REGISTER
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row">
+                      <div class="col">
+                        <label>First Name</label><span style="color: red;">*</span>
+                        <input type="text" class="form-control" placeholder="First name" id="firstname">
+                        <p style="color: red; display: none;" id="errorfirstname">enter your first name</p>
+                        <p style="display: none; color: red;" id="firstnamelengtherror">firstname should be atleast 3 characters</p>
+                      </div>
+                      <div class="col">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last name" id="lastname">
+                      </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Email address</label><span style="color: red;">*</span>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <p style="color: red; display: none;" id="erroremail">enter your email</p>
+                        <p style="color: red; display: none;" id="validemailerror">enter valid email</p>
+                        
+                      </div>
+                      <div class="form-group mt-3">
+                        <label>Phone No</label><span style="color: red;">*</span>
+                        <input type="number" class="form-control" id="phone">
+                        <p style="color: red; display: none;" id="errorphone">enter your phone number</p>
+                        <p style="color: red; display: none;" id="validphoneerror">enter valid number</p>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label>Password</label><span style="color: red;">*</span>
+                        <input type="password" class="form-control" id="password">
+                        <p style="color: red; display: none;" id="errorpassword">enter your password</p>
+                      </div>
+                      <div class="form-group">
+                        <label>Confirm Password</label><span style="color: red;">*</span>
+                        <input type="password" class="form-control" id="confirmpassword">
+                        <p style="color: red; display: none;" id="errorconfirmpassword">re-enter your password</p>
+                        <p style="display: none; color: red;" id="confirmpasswordmatch">your password doesn't match</p>
+                      </div>
+                      <button type="button" class="btn" onclick="formValidation()">Submit</button>
+
+                    
+                  </form>
+            </div>
+          </div>
+          
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+        AOS.init();
+        </script>
+        <script>
+            function formValidation(){
+                var firstname=document.getElementById("firstname").value.trim();
+                var email=document.getElementById("email").value;
+                var password=document.getElementById("password").value;
+                var confirmpassword=document.getElementById("confirmpassword").value;
+                var phone=document.getElementById("phone").value;
+                var emailpattern= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var phonepattern=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+                if(firstname){
+                  if(firstname.length>=3){
+                    document.getElementById("firstname").style="border:2px solid #62f700";
+                    document.getElementById("firstnamelengtherror").style="display:none;"
+                    document.getElementById("errorfirstname").style="display:none;"
+                  
+                  }
+                  else{
+                    document.getElementById("firstname").style="border:2px solid red;";
+                    document.getElementById("firstnamelengtherror").style="display:block; color:red;"
+                    document.getElementById("errorfirstname").style="display:none;"
+                  }
+                }
+                else{
+                  document.getElementById("firstname").style="border:2px solid red;";
+                  document.getElementById("errorfirstname").style="display:block; color:red;"
+                  document.getElementById("firstnamelengtherror").style="display:none;"
+                }
+                if(email){
+                   if (emailpattern.test(email)){
+                    document.getElementById("email").style="border:2px solid #62f700";
+                    document.getElementById("erroremail").style="display:none;" 
+                    document.getElementById("validemailerror").style="display:none;"
+                   }
+                   else{
+                    document.getElementById("email").style="border:2px solid red";
+                    document.getElementById("validemailerror").style="display:block; color:red;"
+                    document.getElementById("erroremail").style="display:none;"
+                   }
+                }
+                else{
+                    document.getElementById("email").style="border:2px solid red";
+                    document.getElementById("erroremail").style="display:block; color:red;"
+                    document.getElementById("validemailerror").style="display:none;"
+                }
+                if(phone){
+                   if (phonepattern.test(phone)){
+                    document.getElementById("phone").style="border:2px solid #62f700";
+                    document.getElementById("errorphone").style="display:none;" 
+                    document.getElementById("validphoneerror").style="display:none;"
+                   }
+                   else{
+                    document.getElementById("phone").style="border:2px solid red";
+                    document.getElementById("validphoneerror").style="display:block; color:red;"
+                    document.getElementById("errorphone").style="display:none";
+                   }
+                }
+                else{
+                    document.getElementById("phone").style="border:2px solid red";
+                    document.getElementById("errorphone").style="display:block; color:red;"
+                    document.getElementById("validphoneerror").style="display:none;"
+                }
+                if(password){
+                    document.getElementById("password").style="border:2px solid #62f700";
+                    document.getElementById("errorpassword").style="display:none";
+                }
+                else{
+                    document.getElementById("password").style="border:2px solid red";
+                    document.getElementById("errorpassword").style="display:block; color:red;"
+                }
+                if(confirmpassword){
+                  if(password==confirmpassword){
+                    document.getElementById("password").style="border:2px solid #62f700";
+                    document.getElementById("confirmpassword").style="border:2px solid #62f700";
+                    document.getElementById("errorconfirmpassword").style="display:none;";
+                    document.getElementById("confirmpasswordmatch").style="display:none;"
+                  }
+                  else{
+                    document.getElementById("password").style="border:2px solid red";
+                    document.getElementById("confirmpassword").style="border:2px solid red";
+                    document.getElementById("confirmpasswordmatch").style="display:block; color:red;"
+                    document.getElementById("errorconfirmpassword").style="display:none;";
+
+                  }
+                }
+                else{
+                  document.getElementById("confirmpassword").style="border:2px solid red;";
+                  document.getElementById("errorconfirmpassword").style="display:block; color:red;";
+                  document.getElementById("confirmpasswordmatch").style="display:none;"
+
+                }
+               
+                
+            }
+        </script>
+ 
+  </body>
+</html>
